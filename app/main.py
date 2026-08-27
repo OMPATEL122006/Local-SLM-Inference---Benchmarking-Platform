@@ -4,6 +4,7 @@ from app.config import OLLAMA_HOST
 from app.ollama_client import (
     generate_response,
     generate_structured_response,
+    generate_instructor_response,
     list_models,
 )
 from app.schemas import (
@@ -86,3 +87,28 @@ def structured(request: GenerateRequest):
         model=result["model"],
         metrics=result["metrics"],
     )
+    
+@app.post("/structured/instructor")
+def structured_instructor(request: GenerateRequest):
+    available_models = list_models()
+
+    if request.model not in available_models:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Model '{request.model}' is not installed.",
+        )
+
+    result = generate_instructor_response(
+    prompt=request.prompt,
+    model=request.model,
+    response_model=StructuredAnalysis,
+)
+
+    return {
+    "result": result["result"],
+    "model": result["model"],
+    "latency_seconds": result["latency_seconds"],
+    "attempts": result["attempts"],
+    "retries": result["retries"],
+    "validation_errors": result["validation_errors"],
+}
