@@ -31,10 +31,7 @@ class GenerateResponse(BaseModel):
 class StructuredAnalysis(BaseModel):
     summary: str
     key_points: list[str]
-    confidence: float = Field(
-        ge=0.0,
-        le=1.0,
-    )
+    category: str
     
 class StructuredResponse(BaseModel):
     result: StructuredAnalysis

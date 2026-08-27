@@ -66,9 +66,20 @@ def structured(request: GenerateRequest):
         schema=StructuredAnalysis.model_json_schema(),
     )
 
-    analysis = StructuredAnalysis.model_validate_json(
-        result["response"]
-    )
+    try:
+        analysis = StructuredAnalysis.model_validate_json(
+            result["response"]
+        )
+    except Exception as exc:
+        raise HTTPException(
+            status_code=422,
+            detail={
+                "error": "structured_output_validation_failed",
+                "message": "The model returned data that does not satisfy the required schema.",
+                "model": result["model"],
+                "raw_response": result["response"],
+            },
+        ) from exc
 
     return StructuredResponse(
         result=analysis,
