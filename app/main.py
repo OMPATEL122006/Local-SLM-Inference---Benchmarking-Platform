@@ -1,9 +1,17 @@
 from fastapi import FastAPI, HTTPException
 
 from app.config import OLLAMA_HOST
-from app.ollama_client import generate_response, list_models
-from app.schemas import GenerateRequest, GenerateResponse
-
+from app.ollama_client import (
+    generate_response,
+    generate_structured_response,
+    list_models,
+)
+from app.schemas import (
+    GenerateRequest,
+    GenerateResponse,
+    StructuredAnalysis,
+    StructuredResponse
+)
 
 app = FastAPI(
     title="Local SLM Inference API",
@@ -40,4 +48,30 @@ def generate(request: GenerateRequest):
     return generate_response(
         prompt=request.prompt,
         model=request.model,
+    )
+    
+@app.post("/structured", response_model=StructuredResponse)
+def structured(request: GenerateRequest):
+    available_models = list_models()
+
+    if request.model not in available_models:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Model '{request.model}' is not installed.",
+        )
+
+    result = generate_structured_response(
+        prompt=request.prompt,
+        model=request.model,
+        schema=StructuredAnalysis.model_json_schema(),
+    )
+
+    analysis = StructuredAnalysis.model_validate_json(
+        result["response"]
+    )
+
+    return StructuredResponse(
+        result=analysis,
+        model=result["model"],
+        metrics=result["metrics"],
     )

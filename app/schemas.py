@@ -27,3 +27,16 @@ class GenerateResponse(BaseModel):
     response: str
     model: str
     metrics: InferenceMetrics
+    
+class StructuredAnalysis(BaseModel):
+    summary: str
+    key_points: list[str]
+    confidence: float = Field(
+        ge=0.0,
+        le=1.0,
+    )
+    
+class StructuredResponse(BaseModel):
+    result: StructuredAnalysis
+    model: str
+    metrics: InferenceMetrics
