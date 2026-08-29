@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "tasks": [
+    {
+      "id": "generation_01",
+      "category": "general_generation",
+      "prompt": "Explain the difference between HTTP and HTTPS to a beginner in approximately 100 words."
+    },
+    {
+      "id": "generation_02",
+      "category": "general_generation",
+      "prompt": "Explain what an API is using a simple real-world analogy in approximately 100 words."
+    },
+    {
+      "id": "generation_03",
+      "category": "general_generation",
+      "prompt": "Explain the purpose of a database index and one situation where it improves performance."
+    },
+
+    {
+      "id": "summary_01",
+      "category": "summarization",
+      "prompt": "Summarize this passage in 3 concise sentences: Cloud computing allows organizations to access computing resources such as servers, storage, databases, and networking on demand. Instead of purchasing and maintaining all physical infrastructure themselves, organizations can provision resources from cloud providers as needed. This can improve scalability and reduce the need for large upfront infrastructure investments, although organizations must consider cost management, security, privacy, and vendor dependency."
+    },
+    {
+      "id": "summary_02",
+      "category": "summarization",
+      "prompt": "Summarize this passage in 3 concise sentences: Remote work can eliminate daily commuting and give employees greater flexibility over where and when they perform their work. However, distributed teams can experience communication and collaboration difficulties if processes and tools are poorly designed. Successful remote organizations often rely on clear communication practices, documented workflows, and appropriate collaboration tools."
+    },
+    {
+      "id": "summary_03",
+      "category": "summarization",
+      "prompt": "Summarize this passage in 3 concise sentences: Caching stores frequently accessed data so that future requests can be served more quickly. While caching can significantly reduce latency and workload on underlying systems, cached information can become stale. Cache invalidation and consistency therefore need to be considered when designing a caching strategy."
+    },
+
+    {
+      "id": "extraction_01",
+      "category": "structured_extraction",
+      "prompt": "Extract the following information from this statement: 'The software project uses Python for its backend, PostgreSQL as its database, and Redis for caching.' Return the technologies as a structured list."
+    },
+    {
+      "id": "extraction_02",
+      "category": "structured_extraction",
+      "prompt": "Extract the following information from this statement: 'Alice joined the engineering team in March 2025 as a backend developer and works primarily with Python and FastAPI.' Identify the person's name, role, joining month, and technologies."
+    },
+    {
+      "id": "extraction_03",
+      "category": "structured_extraction",
+      "prompt": "Extract the following information from this statement: 'The application has three services: authentication on port 8000, payments on port 8001, and notifications on port 8002.' Return each service and its port as structured data."
+    },
+
+    {
+      "id": "coding_01",
+      "category": "coding",
+      "prompt": "Write a Python function called is_palindrome that returns True if a string reads the same forward and backward, ignoring spaces and letter case."
+    },
+    {
+      "id": "coding_02",
+      "category": "coding",
+      "prompt": "Write a Python function called find_max that receives a list of integers and returns the largest value without using Python's built-in max function."
+    },
+    {
+      "id": "coding_03",
+      "category": "coding",
+      "prompt": "Write a Python function called remove_duplicates that receives a list of integers and returns a list containing each value only once while preserving the original order."
+    },
+
+    {
+      "id": "reasoning_01",
+      "category": "reasoning",
+      "prompt": "A server processes 120 requests per minute. If traffic increases by 50 percent, how many requests per minute must the server handle?"
+    },
+    {
+      "id": "reasoning_02",
+      "category": "reasoning",
+      "prompt": "A database query takes 800 milliseconds. An optimization reduces its execution time by 25 percent. What is the new execution time?"
+    },
+    {
+      "id": "reasoning_03",
+      "category": "reasoning",
+      "prompt": "A system has 8 GB of RAM. The operating system uses 2.5 GB and an application uses 3.2 GB. How much RAM remains available?"
+    }
+  ]
+}
